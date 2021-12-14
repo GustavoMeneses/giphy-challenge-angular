@@ -1,4 +1,4 @@
-<ion-card>
+<ion-card (click)="cardClicked()">
   <ion-card-content>
     <iframe [src]="sanitizeURL(giphy.embed_url)"></iframe>
   </ion-card-content>

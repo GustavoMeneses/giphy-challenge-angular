@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { GiphyService } from '../services/giphy.service';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, ModalController } from '@ionic/angular';
+import { DetailModalComponent } from "../components/detail-modal/detail-modal.component";
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,8 @@ export class HomePage {
 
   constructor(
       private giphyService: GiphyService,
-      private loadingCtrl: LoadingController
+      private loadingCtrl: LoadingController,
+      private modalCtrl: ModalController
   ) {
   }
 
@@ -44,5 +46,15 @@ export class HomePage {
 
   scrollGiphies(event) {
     this.listGiphies(this.offset, event);
+  }
+
+  async openDetailModal(giphy) {
+    const modal = await this.modalCtrl.create({
+      component: DetailModalComponent,
+      componentProps: {
+        gifUrl: giphy.embed_url
+      }
+    });
+    await modal.present();
   }
 }

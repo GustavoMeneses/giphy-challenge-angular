@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
@@ -9,11 +9,16 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class GiphyCardComponent {
 
   @Input() giphy: any;
+  @Output() cardCliked: EventEmitter<any> = new EventEmitter();
 
   constructor(private sanitizer: DomSanitizer) {
   }
 
   sanitizeURL(url: any) {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+
+  cardClicked() {
+    this.cardCliked.emit();
   }
 }
