@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Storage } from '@capacitor/storage';
 
 @Component({
@@ -10,12 +10,21 @@ export class HistoryPage implements OnInit {
 
   history = [];
 
-  constructor() {
+  constructor(
+      private cd: ChangeDetectorRef
+  ) {
   }
 
   async ngOnInit() {
     const search = await Storage.get({key: 'search'});
-    this.history = search.value.split(',');
+    if (search.value){
+      this.history = search.value.split(',');
+    }
   }
 
+  async clearHistory() {
+    await Storage.clear();
+    this.history = [];
+    this.cd.detectChanges();
+  }
 }
