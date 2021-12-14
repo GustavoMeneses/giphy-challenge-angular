@@ -20,4 +20,8 @@
     </ng-container>
   </ion-grid>
 
+  <ion-infinite-scroll [disabled]="!giphies.length" threshold="100px" (ionInfinite)="scrollGiphies($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
 </ion-content>
