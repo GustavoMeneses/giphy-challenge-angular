@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { GiphyService } from '../../services/giphy.service';
-import { LoadingController, ModalController } from '@ionic/angular';
+import { LoadingController, MenuController, ModalController } from '@ionic/angular';
 import { DetailModalComponent } from '../../components/detail-modal/detail-modal.component';
 import { Storage } from '@capacitor/storage';
 
@@ -17,7 +17,8 @@ export class HomePage {
   constructor(
       private giphyService: GiphyService,
       private loadingCtrl: LoadingController,
-      private modalCtrl: ModalController
+      private modalCtrl: ModalController,
+      private menuCtrl: MenuController
   ) {
   }
 
@@ -69,5 +70,9 @@ export class HomePage {
       }
     });
     await modal.present();
+  }
+
+  async openMenu() {
+    await this.menuCtrl.open();
   }
 }
