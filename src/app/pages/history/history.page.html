@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Search History</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ng-container *ngFor="let item of history">
+    <ion-item>
+      <ion-label>{{item}}</ion-label>
+    </ion-item>
+  </ng-container>
+
+</ion-content>

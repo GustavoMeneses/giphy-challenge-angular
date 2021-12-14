@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { GiphyService } from '../../services/giphy.service';
 import { LoadingController, ModalController } from '@ionic/angular';
 import { DetailModalComponent } from '../../components/detail-modal/detail-modal.component';
+import { Storage } from '@capacitor/storage';
 
 @Component({
   selector: 'app-home',
@@ -33,12 +34,23 @@ export class HomePage {
             this.giphies = giphies.data;
             this.offset = giphies.pagination.count;
           }
-          console.log(giphies.data);
         }).add(() => loading.dismiss());
   }
 
   async searchGIPHY() {
     if (this.searchWord.length > 0) {
+      const search = await Storage.get({key: 'search'});
+      if (!search.value) {
+        await Storage.set({
+          key: 'search',
+          value: this.searchWord
+        });
+      } else {
+        await Storage.set({
+          key: 'search',
+          value: `${search.value.concat(`,${this.searchWord}`)}`
+        });
+      }
       this.listGiphies();
     } else {
       this.giphies = [];
