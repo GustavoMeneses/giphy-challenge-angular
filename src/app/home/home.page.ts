@@ -37,6 +37,8 @@ export class HomePage {
   async searchGIPHY() {
     if (this.searchWord.length > 0) {
       this.listGiphies();
+    } else {
+      this.giphies = [];
     }
   }
 

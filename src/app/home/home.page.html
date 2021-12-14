@@ -10,6 +10,10 @@
   <ion-searchbar mode="ios" searchIcon="search" placeholder="search for a giphy" [(ngModel)]="searchWord"
                  (ionChange)="searchGIPHY()"></ion-searchbar>
 
+  <div class="empty-state" *ngIf="!giphies.length">
+    There is no data to be displayed.
+  </div>
+
   <ion-grid *ngIf="giphies.length > 0">
     <ng-container *ngFor="let giphy of giphies">
       <ion-row>
@@ -21,7 +25,7 @@
   </ion-grid>
 
   <ion-infinite-scroll [disabled]="!giphies.length" threshold="100px" (ionInfinite)="scrollGiphies($event)">
-    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    <ion-infinite-scroll-content loading-spinner="none"></ion-infinite-scroll-content>
   </ion-infinite-scroll>
 
 </ion-content>
