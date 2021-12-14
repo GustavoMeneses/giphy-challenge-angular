@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
-import { GiphyCardComponent } from '../components/giphy-card/giphy-card.component';
+import { GiphyCardComponent } from '../../components/giphy-card/giphy-card.component';
 
 
 @NgModule({

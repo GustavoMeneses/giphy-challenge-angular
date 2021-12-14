@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { GiphyService } from '../services/giphy.service';
+import { GiphyService } from '../../services/giphy.service';
 import { LoadingController, ModalController } from '@ionic/angular';
-import { DetailModalComponent } from '../components/detail-modal/detail-modal.component';
+import { DetailModalComponent } from '../../components/detail-modal/detail-modal.component';
 
 @Component({
   selector: 'app-home',
