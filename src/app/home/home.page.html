@@ -14,15 +14,11 @@
     There is no data to be displayed.
   </div>
 
-  <ion-grid *ngIf="giphies.length > 0">
+  <div *ngIf="giphies.length > 0">
     <ng-container *ngFor="let giphy of giphies">
-      <ion-row>
-        <ion-col size="12">
-          <app-giphy-card (cardCliked)="openDetailModal(giphy)" [giphy]="giphy"></app-giphy-card>
-        </ion-col>
-      </ion-row>
+      <app-giphy-card (cardCliked)="openDetailModal(giphy)" [giphy]="giphy"></app-giphy-card>
     </ng-container>
-  </ion-grid>
+  </div>
 
   <ion-infinite-scroll [disabled]="!giphies.length" threshold="100px" (ionInfinite)="scrollGiphies($event)">
     <ion-infinite-scroll-content loading-spinner="none"></ion-infinite-scroll-content>

@@ -1,5 +1,5 @@
 <ion-card (click)="cardClicked()">
   <ion-card-content>
-    <iframe [src]="sanitizeURL(giphy.embed_url)"></iframe>
+    <img [src]="sanitizeURL(giphy.images['480w_still'].url)">
   </ion-card-content>
 </ion-card>
