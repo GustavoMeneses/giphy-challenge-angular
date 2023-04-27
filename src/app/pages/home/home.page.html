@@ -18,8 +18,8 @@
   </div>
 
   <div *ngIf="giphies.length > 0">
-    <ng-container *ngFor="let giphy of giphies">
-      <app-giphy-card (cardCliked)="openDetailModal(giphy)" [giphy]="giphy"></app-giphy-card>
+    <ng-container *ngFor="let giphy of giphies; let i = index">
+      <app-giphy-card (cardCliked)="openDetailModal(giphy, i)" [giphy]="giphy"></app-giphy-card>
     </ng-container>
   </div>
 

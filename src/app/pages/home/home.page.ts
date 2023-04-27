@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { GiphyService } from '../../services/giphy.service';
 import { LoadingController, MenuController, ModalController } from '@ionic/angular';
 import { DetailModalComponent } from '../../components/detail-modal/detail-modal.component';
-import { Storage } from '@capacitor/storage';
+import { HistoryService } from 'src/app/services/history.service';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +18,8 @@ export class HomePage {
       private giphyService: GiphyService,
       private loadingCtrl: LoadingController,
       private modalCtrl: ModalController,
-      private menuCtrl: MenuController
+      private menuCtrl: MenuController,
+      private historyService: HistoryService
   ) {
   }
 
@@ -40,18 +41,7 @@ export class HomePage {
 
   async searchGIPHY() {
     if (this.searchWord.length > 0) {
-      const search = await Storage.get({key: 'search'});
-      if (!search.value) {
-        await Storage.set({
-          key: 'search',
-          value: this.searchWord
-        });
-      } else {
-        await Storage.set({
-          key: 'search',
-          value: `${search.value.concat(`,${this.searchWord}`)}`
-        });
-      }
+      this.historyService.saveHistory(this.searchWord).subscribe();
       this.listGiphies();
     } else {
       this.giphies = [];
@@ -62,11 +52,17 @@ export class HomePage {
     this.listGiphies(this.offset, event);
   }
 
-  async openDetailModal(giphy) {
+  async openDetailModal(giphy, initialIndex) {
+    const amountOfGifs = this.giphies.length;
     const modal = await this.modalCtrl.create({
       component: DetailModalComponent,
       componentProps: {
-        gifUrl: giphy.embed_url
+        gifUrl: giphy.embed_url,
+        gifs: this.giphies,
+        amountOfGifs,
+        initialIndex,
+        paginationOffset: this.offset,
+        searchWord: this.searchWord
       }
     });
     await modal.present();

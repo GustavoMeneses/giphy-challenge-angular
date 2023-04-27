@@ -1,5 +1,5 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { Storage } from '@capacitor/storage';
+import { Component, OnInit } from '@angular/core';
+import { HistoryService } from 'src/app/services/history.service';
 
 @Component({
   selector: 'app-history',
@@ -11,20 +11,23 @@ export class HistoryPage implements OnInit {
   history = [];
 
   constructor(
-      private cd: ChangeDetectorRef
+      private historyService: HistoryService
   ) {
   }
 
   async ngOnInit() {
-    const search = await Storage.get({key: 'search'});
-    if (search.value){
-      this.history = search.value.split(',');
-    }
+    this.loadHistory();
   }
 
   async clearHistory() {
-    await Storage.clear();
-    this.history = [];
-    this.cd.detectChanges();
+    this.historyService.clearHistory().subscribe();
+    this.loadHistory();
+  }
+
+  loadHistory() {
+    this.historyService.getHistory()
+      .subscribe((history) => {
+        this.history = history.map(h => h.key);
+      });
   }
 }
