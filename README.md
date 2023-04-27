@@ -26,7 +26,16 @@ npm install
 ionic serve
 ```
 
-- Make sure you have a postgreSQL database running on your enviromnent.
+- Make sure you have a postgreSQL instance running on your enviromnent.
+- Go to your terminal and run `psql -U {superuser}` command with the superuser you created on installation process.
+- Run these commands:
+```
+create database {database_name};
+create user {user_name} with encrypted password ‘{password}’;
+grant all privileges on database {database_name} to {user_name};
+\c {database_name}
+grant all on schema public to {user_name};
+```
 - Configure your database settings on `ormconfig.ts`.
 - After that, go to backend folder and run the project.
 ```
