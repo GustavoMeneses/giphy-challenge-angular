@@ -1,6 +1,6 @@
 # Giphy Challenge
 
-Application built with Ionic + Angular + NestJS + PostgreSQL
+Application built with Ionic + Angular + NestJS + TypeORM + PostgreSQL
 
 ## Requirements
 
