@@ -1,1 +1,1 @@
-# giphy-challenge
+# Giphy Challenge
