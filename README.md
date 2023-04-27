@@ -18,7 +18,7 @@ Application built with Ionic + Angular + NestJS + PostgreSQL
 - Install PostgreSQL: [PostgreSQL](https://www.postgresql.org/download/)
 - Make sure Node is installed and it's on the correct version. If you don't have it already, I recommend using [NVM](https://github.com/nvm-sh/nvm).
 
-## Running 
+## Running the project
 
 - Go to frontend folder and run the project, after installing all the dependencies.
 ```
