@@ -20,8 +20,10 @@ export class HistoryPage implements OnInit {
   }
 
   async clearHistory() {
-    this.historyService.clearHistory().subscribe();
-    this.loadHistory();
+    this.historyService.clearHistory()
+    .subscribe(() => {
+      this.loadHistory();
+    });
   }
 
   loadHistory() {
