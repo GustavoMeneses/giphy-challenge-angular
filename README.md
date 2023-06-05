@@ -1,4 +1,4 @@
-# Giphy Challenge
+# Giphy Challenge Angular
 
 Application built with Ionic + Angular + NestJS + TypeORM + PostgreSQL
 
